@@ -70,14 +70,13 @@ sudo cp clocks.sh $ROOTFS/unit_tests/
 ## IPU: Scaling
 
 ~~~~{.bash}
-./mxc_ipudev_test.out -h
+/unit_tests/mxc_ipudev_test.out -h
 ~~~~
 
 * Down-scale an image
 
 ~~~~{.bash}
-cd /unit_tests
-./mxc_ipudev_test.out -c 1 \
+/unit_tests/mxc_ipudev_test.out -c 1 \
                       -i 1024,768,RGBP,0,0,0,0,0,0 \
                       -O 176,144,RGBP,0,0,0,0,0 \
                       -s 0 \
@@ -90,7 +89,7 @@ cd /unit_tests
 * Down-scale and change the color space convert (RGB to YUV)
 
 ~~~~{.bash}
-./mxc_ipudev_test.out -c 1 \
+/unit_tests/mxc_ipudev_test.out -c 1 \
                       -i 1024,768,RGBP,0,0,0,0,0,0 \
                       -O 176,144,UYVY,0,0,0,0,0 \
                       -s 0 \
@@ -134,14 +133,14 @@ TOTALFRAMES=`expr $SEC \* $FPS`
 ~~~~~
 
 ~~~~{.bash}
-./mxc_v4l2_capture.out \
+/unit_tests/mxc_v4l2_capture.out \
 -iw $W -ih $H -ow $W -oh $H -r 0 -c $TOTALFRAMES -fr $FPS $OUT
 ~~~~
 
 * Show the RAW video (just to make sure it was recorded correctly)
 
 ~~~~{.bash}
-./mxc_v4l2_output.out -iw $W -ih $H $OUT
+/unit_tests/mxc_v4l2_output.out -iw $W -ih $H $OUT
 ~~~~
 
 ## IPU: Camera Image Capture
@@ -150,13 +149,13 @@ TOTALFRAMES=`expr $SEC \* $FPS`
   in the format `YUV422` planar.
 
 ~~~~{.bash}
-./mxc_v4l2_still.out -w 640 -h 480 -f YUV422P
+/unit_tests/mxc_v4l2_still.out -w 640 -h 480 -f YUV422P
 ~~~~
 
 The image can be viewed with:
 
 ~~~~{.bash}
-./mxc_v4l2_output.out \
+/unit_tests/mxc_v4l2_output.out \
 -iw 640 -ih 480 -ow 176 -oh 144 -l 100 -f 422P still.yuv
 ~~~~
 
@@ -172,8 +171,8 @@ the preview size is 160 X 160 with a starting offset of (20,20).
   command line
 
 ~~~~{.bash}
-./mxc_v4l2_overlay.out -help
-./mxc_v4l2_overlay.out \
+/unit_tests/mxc_v4l2_overlay.out -help
+/unit_tests/mxc_v4l2_overlay.out \
 -iw 640 -ih 480 -it 0 -il 0 -ow 160 -oh 160 -ot 20 -ol 20 -r 0 -t 50 -do 0 -fg -fr 30
 ~~~~
 
@@ -182,15 +181,15 @@ the preview size is 160 X 160 with a starting offset of (20,20).
 
 ~~~~{.bash}
 # To test MPEG-4 encode:
-./mxc_vpu_test.out \
+/unit_tests/mxc_vpu_test.out \
 -E "-i $OUT -w $W -h $H -f 0 -o $OUTFOLDER/file.mpeg4"
 
 # To test H.263 encode:
-./mxc_vpu_test.out \
+/unit_tests/mxc_vpu_test.out \
 -E "-i $OUT -w $W -h $H -f 1 -o $OUTFOLDER/file.263"
 
 # To test H.264 encode:
-./mxc_vpu_test.out \
+/unit_tests/mxc_vpu_test.out \
 -E "-i $OUT -w $W -h $H -f 2 -o $OUTFOLDER/file.264"
 ~~~~
 
@@ -209,15 +208,15 @@ root@imx6qsabresd:/unit_tests#
 
 ~~~~{.bash}
 # To test MPEG-4 decode:
-./mxc_vpu_test.out \
+/unit_tests/mxc_vpu_test.out \
 -D "-i $OUTFOLDER/file.mpeg4 -f 0 -o $OUTFOLDER/file_mpeg4.yuv"
 
 # To test H.263 decode:
-./mxc_vpu_test.out \
+/unit_tests/mxc_vpu_test.out \
 -D "-i $OUTFOLDER/file.263 -f 1 -o $OUTFOLDER/file_263.yuv"
 
 # To test H.264 decode:
-./mxc_vpu_test.out \
+/unit_tests/mxc_vpu_test.out \
 -D "-i $OUTFOLDER/file.264 -f 2 -o $OUTFOLDER/file_264.yuv"
 ~~~~
 
