@@ -150,7 +150,7 @@ TOTALFRAMES=`expr $SEC \* $FPS`
   in the format `YUV422` planar.
 
 ~~~~{.bash}
-mxc_v4l2_still.out -w 640 -h 480 -f YUV422P
+./mxc_v4l2_still.out -w 640 -h 480 -f YUV422P
 ~~~~
 
 The image can be viewed with:
@@ -166,6 +166,10 @@ The image can be viewed with:
 * Direct preview the camera to the foreground, and set the frame rate to 30 fps, 
 the window of interest is 640 X 480 with a starting offset of (0,0), 
 the preview size is 160 X 160 with a starting offset of (20,20). 
+
+* For `HDMI` output, so may need to add the 
+  `video=mxcfb0:dev=hdmi,1920x1080M@60,if=RGB24` argument to the kernel
+  command line
 
 ~~~~{.bash}
 ./mxc_v4l2_overlay.out -help
@@ -240,14 +244,7 @@ a8e2bd9837c63672429e22d25ffdaef0  /var/volatile/file_263.yuv
     data rate, and discard enough information to hit that data rate target. 
 
 
-Compression for Great Video and Audio, 2nd Edition
-
-by Ben Waggoner
-
-Publisher: Focal Press
-
-Release Date: Feb. 11, 2013
-
-ISBN: 9781136064531
+    Compression for Great Video and Audio, 2nd Edition
+    by Ben Waggoner
 
 
